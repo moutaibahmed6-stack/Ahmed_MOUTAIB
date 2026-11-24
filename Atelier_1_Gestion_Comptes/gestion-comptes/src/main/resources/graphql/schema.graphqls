@@ -1,0 +1,36 @@
+
+# Les deux types de comptes bancaires
+enum TypeCompte {
+    COURANT
+    EPARGNE
+}
+
+# Informations d'un compte bancaire
+type Compte {
+    id: ID!
+    solde: Float!
+    dateCreation: String!
+    type: TypeCompte!
+}
+
+# Opérations pour consulter les comptes
+type Query {
+    comptes: [Compte!]!
+    compte(id: ID!): Compte
+}
+
+# Opérations pour modifier les données
+type Mutation {
+    creerCompte(
+        solde: Float!,
+        type: TypeCompte!
+    ): Compte!
+
+    modifierCompte(
+        id: ID!,
+        solde: Float!,
+        type: TypeCompte!
+    ): Compte!
+
+    supprimerCompte(id: ID!): Boolean!
+}
